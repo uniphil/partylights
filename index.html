@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <script>
+var GR = 1.618;
+var R = 82,
+    G = 71,
+    B = 66,
+    _ = 32,
+    up = 38,
+    down = 40,
+    c = {};
+c[R] = c[G] = c[B] = 0;
+
+document.body.onkeydown = function(e) {
+  console.log(e.keyCode);
+  if (e.keyCode === _) {
+    c[R] = c[G] = c[B] = 0;
+  } else if (e.keyCode === down) {
+    c[R] /= GR;
+    c[G] /= GR;
+    c[B] /= GR;
+  } else if (e.keyCode === up) {
+    c[R] = Math.min(++c[R] * GR, 255);
+    c[G] = Math.min(++c[G] * GR, 255);
+    c[B] = Math.min(++c[B] * GR, 255);
+  }
+  var change = Math.random() * 256;
+  c[e.keyCode] += change;
+  c[e.keyCode] %= 256;
+  c[R] = Math.round(c[R]);
+  c[G] = Math.round(c[G]);
+  c[B] = Math.round(c[B]);
+  document.body.style.background = 'rgb(' + [c[R], c[G], c[B]].join(', ') + ')';
+};
+    </script>
+  </body>
+</html>
