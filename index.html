@@ -34,8 +34,15 @@ document.body.onkeydown = function(e) {
   c[R] = Math.round(c[R]);
   c[G] = Math.round(c[G]);
   c[B] = Math.round(c[B]);
-  document.body.style.background = 'rgb(' + [c[R], c[G], c[B]].join(', ') + ')';
 };
+
+(function anim() {
+  document.body.style.background = 'rgb(' + [c[R], c[G], c[B]].join(', ') + ')';
+  requestAnimationFrame(anim);
+  c[R] = Math.max(c[R]-1, 0);
+  c[G] = Math.max(c[G]-1, 0);
+  c[B] = Math.max(c[B]-1, 0);
+})();
     </script>
   </body>
 </html>
